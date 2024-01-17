@@ -5,10 +5,14 @@ import {
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
+import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from "bcrypt"
 
 import { env } from "@/env";
 import { db } from "@/server/db";
+import { loginSchema } from "@/common/authSchema";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -38,17 +42,84 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-      },
-    }),
+    jwt({token,user}){
+      if(user){
+        token.id = user.id;
+        token.name = user.name
+      }
+      return token;
+    },
+    session({session, token, user}){
+      if(session.user){
+        session.user.email = token.email as string
+        session.user.id = token.id as string
+        session.user.name = token.name as string
+      }
+      return session
+    }
   },
+  
   adapter: PrismaAdapter(db),
   providers: [
-    
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    }),
+    GithubProvider({
+      clientId: env.GITHUB_CLIENT_ID,
+      clientSecret: env.GITHUB_CLIENT_SECRET,
+    }),
+    CredentialsProvider({
+      type: "credentials",
+      credentials: {
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "example@gmail.com",
+        },
+        password: { label: "Password", type: "password" },
+      },
+      // @ts-ignore
+      async authorize(credentials, req) {
+
+        const creds = await loginSchema.parseAsync(credentials);
+        const user = await db.user.findFirst({
+          where: { email: creds.email },
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            password: true,
+          }
+        },);
+        console.log(user)
+
+        if (!user) {
+          return null
+        };
+        console.log('user not null')
+        if(creds.password && user.password){
+          const isCorrectPassword = await bcrypt.compare(
+            creds.password,
+            user.password
+          );
+
+          if (!isCorrectPassword) {
+            throw new Error('Invalid credentials');
+          }
+        }else{
+          throw new Error('Invalid credentials');
+        }
+       
+        if (user) {
+          console.log("User logged in : ", user);
+        }
+
+        return {
+          ...user,
+        }
+      },
+    }),
     /**
      * ...add more providers here.
      *
@@ -59,6 +130,14 @@ export const authOptions: NextAuthOptions = {
      * @see https://next-auth.js.org/providers/github
      */
   ],
+  pages: {
+    signIn: "Signup",
+    // error: '/auth/error',
+    // signOut: '/auth/signout'
+  },
+  session: {
+    strategy: "jwt"
+  },
 };
 
 /**
