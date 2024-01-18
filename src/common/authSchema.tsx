@@ -8,7 +8,7 @@ export const loginSchema = z.object({
 
   export const signUpSchema = loginSchema
   .extend({
-    userName: z.string().min(7),
+    userName: z.string().min(3),
     email: z.string().email(),
     password: z.string().min(3).max(30),
   });
