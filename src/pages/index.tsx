@@ -1,8 +1,10 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
+import NavBar from "@/components/navBar"
 
 import { api } from "@/utils/api";
+import ProblemTable from "@/components/problemTable";
 
 export default function Home() {
   const hello = api.post.hello.useQuery({ text: "from tRPC" });
@@ -12,7 +14,8 @@ export default function Home() {
 
   return (
     <div className="bg-slate-600">
-    <navBar/>
+    <NavBar/>
+    <ProblemTable/>
    </div>
   );
 }

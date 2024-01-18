@@ -24,14 +24,14 @@ const Signup = () => {
           await new Promise((resolve) => setTimeout(resolve, 
             3000));
           console.log('User logged in successfully', data);
-          router.push("/")
+        //   router.push("/")
           if(!data){
     
-            addToast("user not logged in", { appearance: 'error', containerId: 'specificDivId' });
+            // addToast("user not logged in", { appearance: 'error', containerId: 'specificDivId' });
           }
         } catch (error) {
           console.error('Failed to sign in', error);
-          addToast("please enter correct email and password", { appearance: 'success', containerId: 'specificDivId' });
+        //   addToast("please enter correct email and password", { appearance: 'success', containerId: 'specificDivId' });
         }
       }
 

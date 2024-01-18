@@ -8,6 +8,10 @@ export default {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
+      backgroundColor: {
+        'hulu-green': '#1DBF73',
+        'netflix-grey': '#141414',
+      },
     },
   },
   plugins: [],
