@@ -7,7 +7,7 @@ const NavBar = () => {
   return (
     <div className="flex flex-row justify-between bg-black opacity-60 text-white h-12">
         <div className='flex align-middle justify-center mt-3 ml-3  ' > 
-       <p className="decoration-current font-mono font-weight: 900 ont-bold text-dark-yellow text-2xl">LEET BLIND</p>
+       <p className="decoration-current font-mono font-black ont-bold text-yellow-400  text-2xl">LEET BLIND</p>
 
           </div>
         <div>
