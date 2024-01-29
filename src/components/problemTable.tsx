@@ -17,24 +17,24 @@ const ProblemTable = () => {
     <table className="w-full border-collapse">
       <thead>
         <tr>
-          <th className="py-2 px-4 border-b border-white">Title 1</th>
-          <th className="py-2 px-4 border-b border-white">Title 2</th>
-          <th className="py-2 px-4 border-b border-white">Title 3</th>
-          <th className="py-2 px-4 border-b border-white">Title 4</th>
-          <th className="py-2 px-4 border-b border-white">Title 5</th>
+          <th className="py-2 px-4 border-b border-dark-yellow">Title 1</th>
+          <th className="py-2 px-4 border-b border-dark-yellow">Title 2</th>
+          <th className="py-2 px-4 border-b border-dark-yellow">Title 3</th>
+          <th className="py-2 px-4 border-b border-dark-yellow">Title 4</th>
+          <th className="py-2 px-4 border-b border-dark-yellow">Title 5</th>
         </tr>
       </thead>
       <tbody>
         {data.map((row, index) => (
           <tr
             key={index}
-            className={index % 2 === 0 ? 'bg-black' : 'bg-black'} // Apply different background colors to even and odd rows
+            className={index % 2 === 0 ? 'bg-dark-fill-3 ' : 'bg-dark-fill-4' } // Apply different background colors to even and odd rows
           >
-            <td className="py-6 px-4 border-b">{row.data1}</td>
-            <td className="py-4 px-4 border-b">{row.data2}</td>
-            <td className="py-6 px-4 border-b">{row.data3}</td>
-            <td className="py-6 px-4 border-b">{row.data4}</td>
-            <td className="py-6 px-4 border-b">{row.data5}</td>
+            <td className="py-6 px-4 ">{row.data1}</td>
+            <td className="py-4 px-4 ">{row.data2}</td>
+            <td className="py-6 px-4 ">{row.data3}</td>
+            <td className="py-6 px-4 ">{row.data4}</td>
+            <td className="py-6 px-4 ">{row.data5}</td>
           </tr>
         ))}
       </tbody>
