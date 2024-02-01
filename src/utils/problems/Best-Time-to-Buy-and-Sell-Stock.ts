@@ -48,7 +48,7 @@ const problemSolution = `function maxProfit(prices) {
 };`
 
 export const maxProfit: Problem = {
-  id: "max-profit",
+  id: "best-time-to-buy-and-sell-stock",
   title: "121. Best Time to Buy and Sell Stock",
   problemStatement: `<p class='mt-3'>
     You are given an array <code>prices</code> where <code>prices[i]</code> is the price of a given stock on the <code>ith</code> day.

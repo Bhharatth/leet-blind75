@@ -61,9 +61,9 @@ const PlayGround: React.FC<PlaygroundProps>  = ({problem}) => {
             setInputCode( InputCodeFromLocalStorage ? JSON.parse(InputCodeFromLocalStorage) : problem.starterCode)       
         }
         
-        
+    },[pid,problem.starterCode]);
 
-    },[pid,problem.starterCode])
+  
 
     return (
         <div style={{ height: '100vh' }} className='flex flex-col  bg-black opacity-70 relative overflow-x-hidden'>
