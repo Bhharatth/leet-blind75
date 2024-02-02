@@ -1,4 +1,5 @@
 import NavBar from '@/components/navBar';
+import ProblemPageNav from '@/components/problemPageNav';
 import TopBar from '@/components/topBar';
 import WorkSpace from '@/components/workSpace/workSpace';
 import { problems } from '@/utils/problems';
@@ -18,7 +19,7 @@ const ProblemPage: React.FC<ProblempageProps> = ({ problem }) => {
 
     return (
         <div className="bg-slate-600">
-            <NavBar />
+            <ProblemPageNav />
             <WorkSpace problem={problem} />
         </div>
     )

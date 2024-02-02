@@ -2,7 +2,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import NavBar from "@/components/navBar"
-
+import { Problem } from '@/utils/types/problemTypes';
 import { api } from "@/utils/api";
 import ProblemTable from "@/components/problemTable";
 
@@ -14,7 +14,7 @@ export default function Home() {
 
   return (
     <div className="bg-slate-600">
-    <NavBar/>
+    <NavBar  />
     <ProblemTable/>
    </div>
   );

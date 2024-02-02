@@ -16,9 +16,7 @@ const PlayGround: React.FC<PlaygroundProps>  = ({problem}) => {
     const [InputCode , setInputCode ] = useState(problem.starterCode);
     const [currentTestCase, setCurentTestCase] = useState(0);
     
-    console.log(InputCode);
     const {query: {pid}} = useRouter();
-    console.log(pid as string)
     
 
     const onsubmitCode =async ()=> {
@@ -38,7 +36,6 @@ const PlayGround: React.FC<PlaygroundProps>  = ({problem}) => {
       
     };
     const onChangeHandler=(code: string)=> {
-        console.log(code);
         setInputCode(code);
         localStorage.setItem(`Input_code-${pid}`, JSON.stringify(code));
 
@@ -46,7 +43,6 @@ const PlayGround: React.FC<PlaygroundProps>  = ({problem}) => {
 
     const showSolution = async()=> {
 
-        console.log('soltuin:', problem.solution);
         setInputCode(problem.solution)
 
     }
@@ -55,7 +51,6 @@ const PlayGround: React.FC<PlaygroundProps>  = ({problem}) => {
 
     useEffect(()=> {
         const InputCodeFromLocalStorage = localStorage.getItem(`Input_code-${pid}`);
-        console.log(InputCode)
         // setInputCode()
         if(InputCodeFromLocalStorage){
             setInputCode( InputCodeFromLocalStorage ? JSON.parse(InputCodeFromLocalStorage) : problem.starterCode)       

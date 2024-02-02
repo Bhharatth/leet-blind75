@@ -36,11 +36,5 @@ export const problemData: ProblemData[] = [
 		category: "Array",
 		order: 4,
 	},
-	{
-		id: "subsets",
-		title: "Subsets",
-		difficulty: "Medium",
-		category: "Array",
-		order: 10,
-	},
+	
 ];
