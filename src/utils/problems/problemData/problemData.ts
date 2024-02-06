@@ -36,5 +36,19 @@ export const problemData: ProblemData[] = [
 		category: "Array",
 		order: 4,
 	},
+	{
+		id: "contains-duplicate",
+		title: "Contain Duplicate",
+		difficulty: "Easy",
+		category: "Array",
+		order: 5,
+	},
+	{
+		id: "product-of-array-except-self",
+		title: "Product Of Array Except Self",
+		difficulty: "Easy",
+		category: "Array",
+		order: 6,
+	},
 	
 ];

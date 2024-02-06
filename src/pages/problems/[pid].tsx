@@ -3,24 +3,26 @@ import ProblemPageNav from '@/components/problemPageNav';
 import TopBar from '@/components/topBar';
 import WorkSpace from '@/components/workSpace/workSpace';
 import { problems } from '@/utils/problems';
+import { ProblemData, problemData} from '@/utils/problems/problemData/problemData';
 import { Problem } from '@/utils/types/problemTypes';
 import React from 'react';
 
 type ProblempageProps = {
-    problem: Problem
+    problem: Problem,
+    problemSurfaceData: ProblemData
 
 }
 
 // const problem = jumpGameHandler;
 
 
-const ProblemPage: React.FC<ProblempageProps> = ({ problem }) => {
+const ProblemPage: React.FC<ProblempageProps> = ({ problem,problemSurfaceData }) => {
 
 
     return (
         <div className="bg-slate-600">
             <ProblemPageNav />
-            <WorkSpace problem={problem} />
+            <WorkSpace problem={problem} problemData={problemSurfaceData}/>
         </div>
     )
 

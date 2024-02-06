@@ -34,6 +34,17 @@ const handlerTwoSum = (fn: any) => {
 		throw new Error(error);
 	}
 };
+const problemSolution = `function twoSum(nums, target) {
+    const map = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        const complement = target - nums[i];
+        if (map.has(complement)) {
+            return [map.get(complement), i];
+        }
+        map.set(nums[i], i);
+    }
+    return [];
+}`
 
 export const twoSum: Problem = {
 	id: "two-sum",
@@ -80,5 +91,5 @@ export const twoSum: Problem = {
 	starterCode: starterCodeTwoSum,
 	order: 1,
 	starterFunctionName: "function twoSum(",
-	solution:""
+	solution: problemSolution
 };

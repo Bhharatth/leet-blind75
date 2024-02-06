@@ -16,7 +16,7 @@ export type Problem = {
 	order: number;
 	starterCode: string;
     solution: string
-	handlerFunction: ((fn: any) => boolean) | string;
+	handlerFunction: ((fn: any) => boolean) | string ;
 	starterFunctionName: string;
 };
 

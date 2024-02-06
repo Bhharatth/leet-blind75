@@ -27,10 +27,35 @@ export const threeSumHandler = (fn: any) => {
 const starterCodeThreeSumJS = `function threeSum(nums) {
   // Write your code here
 };`;
+const problemSolution =`function threeSum(nums) {
+    nums.sort((a, b) => a - b);
+    const result = [];
+    for (let i = 0; i < nums.length - 2; i++) {
+        if (i === 0 || nums[i] !== nums[i - 1]) {
+            let left = i + 1;
+            let right = nums.length - 1;
+            while (left < right) {
+                const sum = nums[i] + nums[left] + nums[right];
+                if (sum === 0) {
+                    result.push([nums[i], nums[left], nums[right]]);
+                    while (left < right && nums[left] === nums[left + 1]) left++;
+                    while (left < right && nums[right] === nums[right - 1]) right--;
+                    left++;
+                    right--;
+                } else if (sum < 0) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+        }
+    }
+    return result;
+}`
 
 export const threeSum: Problem = {
 	id: "three-sum",
-	title: "15. 3Sum",
+	title: "3Sum",
 	problemStatement: `<p class='mt-3'>
     Given an integer array <code>nums</code>, return all the triplets <code>[nums[i], nums[j], nums[k]]</code>
     such that <code>i != j</code>, <code>i != k</code>, and <code>j != k</code>, and <code>nums[i] + nums[j] + nums[k] == 0</code>.
@@ -66,5 +91,5 @@ export const threeSum: Problem = {
 	handlerFunction: threeSumHandler,
 	starterFunctionName: "function threeSum(",
 	order: 9,
-    solution:""
+    solution:problemSolution
 };

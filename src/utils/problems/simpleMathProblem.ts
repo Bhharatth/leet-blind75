@@ -25,7 +25,7 @@ const simpleMathProblemHandler = (fn: any) => {
 
 export const simpleMathProblem: Problem = {
   id: "simple-math-problem",
-  title: "1. Simple Math Problem",
+  title: "Simple Math Problem",
   problemStatement: `<p class='mt-3'>
     You are given two numbers<code>a</code> and <code>b</code>. Calculate their sum.
   </p>   

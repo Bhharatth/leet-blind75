@@ -70,3 +70,13 @@ model VerificationToken {
 
     @@unique([identifier, token])
 }
+
+model problemDetails {
+  id         Int   @id @default(autoincrement())
+  title      String
+  category   String
+  difficulty String
+  likes      String[]
+  dislikes   String[]
+  order      Int
+}
