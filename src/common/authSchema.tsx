@@ -19,9 +19,19 @@ export const loginSchema = z.object({
     password: z.string().min(3).max(30),
   });
 
-  export type ILogin = z.infer<typeof loginSchema>;
+  export const problemInputSchema = z.object({
+    id: z.string(),
+    title: z.string(),
+    category: z.string(),
+    difficulty: z.string(),
+    likes: z.number(),
+    dislikes: z.number(),
+  })
+
+export type ILogin = z.infer<typeof loginSchema>;
 export type IUpdateUser = z.infer<typeof updateUserSchema>;
 export type ISignUp = z.infer<typeof signUpSchema>;
+export type IProblemInputSchema = z.infer<typeof problemInputSchema>;
 
 export type SignUpResponse = {
     message: string;

@@ -12,7 +12,7 @@ import React from 'react';
 
 const ProblemCard = () => {
   return (
-  <div className="border border-gray-600 p-4 rounded-lg mt-5">
+  <div className="border border-gray-600 p-4 rounded-lg mt-5 hover:cursor-pointer">
     <div className="text-white mb-2">Title</div>
     <div className="text-white mb-2">Category</div>
     <div className="text-white mb-2">Difficulty</div>

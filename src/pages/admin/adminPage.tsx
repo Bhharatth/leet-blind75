@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Form from '@radix-ui/react-form';
 import ProblemCard from '@/components/problemCard';
 import AdminProblemFormCreate from '@/components/adminProblemCreateForm';
+import AdminProblemUpdateForm from '@/components/adminProblemUpdateForm';
+import { ProblemDetails } from '@/utils/types/problemTypes';
 
 type AdminPageProps = {
 
@@ -18,7 +20,8 @@ type AdminPageProps = {
 // }
 
 const AdminPage: React.FC<AdminPageProps> = () => {
-    const [problemInput, setProblemInput] = useState({
+    const [updateProblem, setUpdateProblem] = useState(false);
+    const [problemInput, setProblemInput] = useState<ProblemDetails>({
         title: "",
         difficulty: "",
         category: "",
@@ -27,11 +30,24 @@ const AdminPage: React.FC<AdminPageProps> = () => {
         dislikes: 0
     });
 
+    useEffect(()=> {
+        setProblemInput({
+            title: "",
+            difficulty: "",
+            category: "",
+            order: 0,
+            likes: 0,
+            dislikes: 0
+        });
+
+    },[updateProblem])
+
+
     return (
         <div>
             <div className='flex flex-row h-screen'>
                 <div className='bg-gray-950 md:flex-1/3 w-0 md:w-1/3 lg:flex-1/3 lg:w-1/3  relative md:overflow-hidden lg:overflow-hidden  overflow-y-scroll'>
-                    <div className="relative h-screen overflow-y-scroll">
+                    <div className="relative h-screen overflow-y-scroll hover:cursor-pointer">
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-50"></div>
                         {/* <Image src="/logo-7.jpg" className="rounded-md" width={600} height={300} alt='logo' /> */}
                         <div className="p-4">
@@ -50,13 +66,17 @@ const AdminPage: React.FC<AdminPageProps> = () => {
 
                 <div className='bg-zinc-900 flex-1 md:flex-2/3 lg:flex-2/3  w-sceen md:w-2/3 lg:w-2/3  flex flex-col justify-start items-center'>
                     <div>
-                        <div className='flex col justify-around'>
-                            <div className='font-bold font-mono text-base box-border w-full text-violet11  inline-flex h-[35px] items-center justify-center rounded-full bg-sky-700 px-[15px] font-medium leading-none   mt-[10px] border-gray-200 text-white  disabled:opacity-50 mx-5'>CREATE PROBLEM</div>
-                            <div className='font-bold font-mono text-base box-border w-full text-violet11  inline-flex h-[35px] items-center justify-center rounded-full bg-sky-700 px-[15px] font-medium leading-none   mt-[10px] border-gray-200 text-white  disabled:opacity-50 mx-5'>UPDATE PROBLEM</div>
+                        <div className='flex col justify-around mx-auto'>
+                            <div className='font-bold font-mono text-base box-border w-full text-violet11  inline-flex h-[35px] items-center justify-center rounded-full bg-sky-700 px-[15px] font-medium leading-none   mt-[10px] border-gray-200 text-white  disabled:opacity-50 mx-5'
+                            onClick={()=> setUpdateProblem(false)}>CREATE PROBLEM</div>
+                            <div className='font-bold font-mono text-base box-border w-full text-violet11  inline-flex h-[35px] items-center justify-center rounded-full bg-sky-700 px-[15px] font-medium leading-none   mt-[10px] border-gray-200 text-white  disabled:opacity-50 mx-5'
+                            onClick={()=> setUpdateProblem(true)}>UPDATE PROBLEM</div>
 
                         </div>
                         <div>
-                            <AdminProblemFormCreate problemInput={problemInput} setProblemInput={setProblemInput}/>
+                            {/* <AdminProblemFormCreate problemInput={problemInput} setProblemInput={setProblemInput}/> */}
+                            {updateProblem ? (<AdminProblemUpdateForm  problemInput={problemInput} setProblemInput={setProblemInput}/>) : (<AdminProblemFormCreate  problemInput={problemInput} setProblemInput={setProblemInput}/>)}
+           
                         </div>
                     </div>
 

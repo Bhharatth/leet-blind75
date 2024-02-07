@@ -11,7 +11,7 @@ import { TRPCError } from "@trpc/server";
 
 
 export const accountRouter = createTRPCRouter({
-  signup: publicProcedure.input(signUpSchema)
+    signup: publicProcedure.input(signUpSchema)
     .mutation(async({ input,ctx }) => {
 
       try {

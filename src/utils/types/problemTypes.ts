@@ -20,3 +20,12 @@ export type Problem = {
 	starterFunctionName: string;
 };
 
+export type ProblemDetails ={
+	title: string;
+	category: string;
+	difficulty: string;
+	likes: number;
+	dislikes: number;
+	order: number;
+  }
+
